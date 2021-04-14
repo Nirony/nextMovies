@@ -1,5 +1,5 @@
 import React, {FC} from "react"
-import {View, Text, SafeAreaView, TouchableOpacity} from "react-native"
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 
 export const MovieDetails: FC  = (props): React.ReactElement => {

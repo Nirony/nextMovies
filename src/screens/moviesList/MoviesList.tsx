@@ -1,7 +1,7 @@
 import React, {FC} from "react"
 import {View, Text, SafeAreaView, TouchableOpacity} from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import {SCREENS} from "../../navigators/main-navigator";
+import { SCREENS } from "../../navigators/screens";
 
 export const MoviesList: FC  = (): React.ReactElement => {
     const navigation = useNavigation();

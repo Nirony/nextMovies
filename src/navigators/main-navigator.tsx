@@ -1,11 +1,7 @@
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
 import { MovieDetails, MoviesList } from "../screens"
-
-export enum SCREENS {
-    moviesList= 'moviesList',
-    movieDetails = 'movieDetails'
-}
+import { SCREENS } from "./screens";
 
 export type PrimaryParamList = {
     moviesList: undefined
