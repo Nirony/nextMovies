@@ -1,0 +1,12 @@
+{
+  "name": "nextMovies",
+  "displayName": "nextMovies",
+  "expo": {
+    "name": "nextMovies",
+    "slug": "nextMovies",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
