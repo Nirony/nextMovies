@@ -1,7 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { Movie } from "../http/getMovies";
+import { getMoviesApi } from "../../services/api/MoviesApi";
 
 export interface MoviesReducerState {
-    movies: any // todo: insert model
+    movies: Movie[]
 }
 
 const INITIAL_STATE: MoviesReducerState = {
@@ -9,14 +11,15 @@ const INITIAL_STATE: MoviesReducerState = {
 };
 
 export const getMovies = createAsyncThunk('moviesList/getMovies', async () => {
-    // todo: add api call
+    const response = await getMoviesApi();
+    return response;
 });
 
 export const moviesSlice = createSlice({
     name: 'moviesList',
     initialState: INITIAL_STATE,
     reducers: {
-        setMovies(state, action: any) { // todo add type
+        setMovies(state, action: PayloadAction<Movie[]>) {
             state.movies = action.payload
         }
     },

@@ -12,13 +12,17 @@ const Stack = createStackNavigator<PrimaryParamList>()
 
 export function MainNavigator() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name={SCREENS.moviesList} component={MoviesList} />
-      <Stack.Screen name={SCREENS.movieDetails} component={MovieDetails} />
+    <Stack.Navigator>
+      <Stack.Screen
+          name={SCREENS.moviesList}
+          component={MoviesList}
+          options={{title: "Movies"}}
+      />
+      <Stack.Screen
+          name={SCREENS.movieDetails}
+          component={MovieDetails}
+          options={{title: "Movie details"}}
+      />
     </Stack.Navigator>
   )
 }
