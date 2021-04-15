@@ -1,4 +1,4 @@
-import React, {createRef, ReactElement, RefObject} from "react"
+import React, { createRef, RefObject } from "react"
 import { StyleSheet, TouchableOpacity, Text } from "react-native"
 import { Input } from "react-native-elements"
 
@@ -13,6 +13,7 @@ export const CustomInput = (props: Props) => {
     const getRightIcon = (): React.ReactElement => {
         return (
             <TouchableOpacity
+                style={style.rightIcon}
                 onPress={() => {
                     inputRef.current?.clear()
                     props.onSubmit('');
@@ -27,7 +28,8 @@ export const CustomInput = (props: Props) => {
 
     return (
         <Input
-            ref={inputRef} // TS - problem with library interface
+            // @ts-ignore
+            ref={inputRef}
             onSubmitEditing={(e) => props.onSubmit(e.nativeEvent.text)}
             onChangeText={props.onSubmit}
             rightIcon={getRightIcon()}
@@ -44,6 +46,7 @@ const style = StyleSheet.create({
         borderRadius: 15,
         height: 25,
         justifyContent: 'center',
-        width: 25
+        width: 25,
+        backgroundColor: '#fff'
     }
 })

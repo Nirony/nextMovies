@@ -2,10 +2,11 @@ import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
 import { MovieDetails, MoviesList } from "../screens"
 import { SCREENS } from "./screens";
+import { Movie } from "../models/http/getMovies";
 
 export type PrimaryParamList = {
     moviesList: undefined
-    movieDetails: { title: string } // todo: change params as needed
+    movieDetails: { movie: Movie }
 }
 
 const Stack = createStackNavigator<PrimaryParamList>()
