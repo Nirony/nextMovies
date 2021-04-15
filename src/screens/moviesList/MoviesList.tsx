@@ -1,27 +1,25 @@
-import React, {FC, useEffect} from "react"
-import {View, Text, SafeAreaView, TouchableOpacity} from "react-native"
+import React, {FC, useEffect, Fragment, useState} from "react"
+import {View, Text, SafeAreaView, TouchableOpacity, FlatList} from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { SCREENS } from "../../navigators/screens";
 import {useDispatch, useSelector} from "react-redux";
 import { getMovies } from "../../models/reducers/moviesReducer";
-import {rootStoreState} from "../../models/reducers/types";
+import { rootStoreState } from "../../models/reducers/types";
+import {MoviesContainer} from "./components/MoviesContainer";
+import {CustomInput} from "../../components/CustomInput";
 
-export const MoviesList: FC  = (): React.ReactElement => {
+export const MoviesList = (): React.ReactElement => {
     const { movies } = useSelector((state: rootStoreState) => state.moviesReducer );
-    const navigation = useNavigation();
-    const dispatch = useDispatch()
-
+    const dispatch = useDispatch();
+    const [ query, setQuery ] = useState('');
     useEffect(() => {
-        console.log(movies)
-    }, [movies])
+        dispatch(getMovies());
+    }, [])
+
     return (
-        <SafeAreaView testID="WelcomeScreen" style={{ flex: 1 }}>
-            <TouchableOpacity onPress={() => navigation.navigate(SCREENS.movieDetails)}>
-                <Text> go to next page </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => dispatch(getMovies())}>
-                <Text> getMoviews </Text>
-            </TouchableOpacity>
+        <SafeAreaView style={{ flex: 1 }}>
+           <CustomInput placeHolder={'search by title or year '} onSubmit={setQuery}/>
+           <MoviesContainer query={query}/>
         </SafeAreaView>
     )
 }
