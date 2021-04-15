@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { rootStoreState } from "../../../models/reducers/types";
 import { Avatar, ListItem } from "react-native-elements";
 import { Movie } from "../../../models/http/getMovies";
+import { filterArrByArguments } from "../../../utils/util";
 
 interface Props {
     query: string
@@ -13,7 +14,7 @@ interface Props {
 
 export const MoviesContainer: FC<Props> = ({ query }: Props): React.ReactElement => {
     const { movies } = useSelector((state: rootStoreState) => state.moviesReducer );
-    const [sortedMoviesList, setSortedMoviesList] = useState([] as Movie[])
+    const [sortedMoviesList, setSortedMoviesList] = useState<Movie[]>([]);
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -21,18 +22,9 @@ export const MoviesContainer: FC<Props> = ({ query }: Props): React.ReactElement
     },[movies]);
 
     useEffect(() => {
-        filterMoviesByQuery()
+        const filteredArr = filterArrByArguments<Movie>(movies, ['title', 'released'], query);
+        setSortedMoviesList(filteredArr);
     }, [query])
-
-    const filterMoviesByQuery = () => {
-        const newMoviesList = movies.filter((value, index) => {
-            return(
-                value.title.toLocaleLowerCase().includes(query.toLocaleLowerCase())
-                ||  value.released.toLocaleLowerCase().includes(query.toLocaleLowerCase())
-            )
-        })
-        setSortedMoviesList(newMoviesList);
-    }
 
     if (sortedMoviesList.length === 0) return <Text> {'No movies match your search'}</Text>
 
@@ -66,5 +58,4 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center'
     },
-
 });
