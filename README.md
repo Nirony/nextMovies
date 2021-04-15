@@ -8,7 +8,7 @@
 
 ****Running on device****
 
-1. First find your IP and replace base_url in `src/services/api/Api.ts` ( not necessary if working with emulators ).
+1. First find your IP and replace base_url in `src/services/api/Api.ts` (not necessary if working with emulators).
 2. Run server - [link](https://github.com/next-insurance/next-test#usage) .
 3. Run `expo start` to see and trigger the different options ( ios/android on a real device/emulator ).
 
